@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MamaSign Daily QA Checklist</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; padding: 20px; color: #fff; }
+        .container { max-width: 900px; margin: 0 auto; }
+        header { text-align: center; margin-bottom: 20px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 15px; border: 1px solid rgba(255,255,255,0.1); }
+        h1 { font-size: 2rem; margin-bottom: 10px; background: linear-gradient(90deg, #00d4ff, #7b2cbf); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .date-input, .tester-input { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); padding: 10px 15px; border-radius: 8px; color: #fff; font-size: 1rem; margin: 10px 5px; }
+        .tester-input { width: 200px; }
+        .summary-top { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(123,44,191,0.15)); border-radius: 15px; padding: 20px; margin-bottom: 25px; border: 2px solid rgba(255,255,255,0.2); position: sticky; top: 10px; z-index: 100; backdrop-filter: blur(10px); }
+        .summary-stats { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .stat-box { padding: 15px 30px; border-radius: 12px; text-align: center; min-width: 100px; }
+        .stat-box.passed { background: rgba(16, 185, 129, 0.3); border: 2px solid #10b981; }
+        .stat-box.failed { background: rgba(239, 68, 68, 0.3); border: 2px solid #ef4444; }
+        .stat-box.pending { background: rgba(255, 255, 255, 0.1); border: 2px solid rgba(255,255,255,0.3); }
+        .stat-box.total { background: rgba(0, 212, 255, 0.2); border: 2px solid #00d4ff; }
+        .stat-number { font-size: 2.5rem; font-weight: 700; }
+        .stat-label { font-size: 0.9rem; opacity: 0.9; margin-top: 5px; }
+        .section { background: rgba(255,255,255,0.05); border-radius: 15px; padding: 20px; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.1); }
+        .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .section-icon { font-size: 1.5rem; }
+        .section-title { font-size: 1.2rem; font-weight: 600; }
+        .test-item { display: flex; align-items: center; padding: 12px 15px; margin: 8px 0; background: rgba(255,255,255,0.03); border-radius: 10px; border: 1px solid rgba(255,255,255,0.05); transition: all 0.3s ease; flex-wrap: wrap; gap: 10px; }
+        .test-item:hover { background: rgba(255,255,255,0.08); }
+        .test-name { flex: 1; font-size: 0.95rem; min-width: 200px; }
+        .status-buttons { display: flex; gap: 8px; }
+        .status-btn { padding: 6px 15px; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem; font-weight: 500; transition: all 0.2s ease; opacity: 0.5; }
+        .status-btn.pass { background: #10b981; color: #fff; }
+        .status-btn.fail { background: #ef4444; color: #fff; }
+        .status-btn.active { opacity: 1; transform: scale(1.05); box-shadow: 0 0 15px rgba(255,255,255,0.2); }
+        .status-btn:hover { opacity: 0.8; }
+        .notes-input { width: 150px; padding: 6px 10px; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; background: rgba(255,255,255,0.1); color: #fff; font-size: 0.85rem; }
+        .notes-input::placeholder { color: rgba(255,255,255,0.4); }
+        .important { background: linear-gradient(135deg, rgba(239,68,68,0.1), rgba(255,165,0,0.1)); border: 1px solid rgba(239,68,68,0.3); }
+        .btn-export { background: linear-gradient(90deg, #00d4ff, #7b2cbf); border: none; padding: 12px 25px; border-radius: 10px; color: #fff; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: transform 0.2s ease; }
+        .btn-export:hover { transform: scale(1.02); }
+        @media (max-width: 600px) { .test-item { flex-direction: column; align-items: flex-start; } .notes-input { width: 100%; } .summary-top { position: relative; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔐 MamaSign Daily QA Checklist</h1>
+            <p>Complete all tests and mark as Passed/Failed</p>
+            <div>
+                <input type="date" class="date-input" id="testDate">
+                <input type="text" class="tester-input" placeholder="Tester Name" id="testerName">
+            </div>
+        </header>
+
+        <div class="summary-top">
+            <div class="summary-stats">
+                <div class="stat-box total"><div class="stat-number" id="totalCount">0</div><div class="stat-label">Total</div></div>
+                <div class="stat-box passed"><div class="stat-number" id="passedCount">0</div><div class="stat-label">Passed</div></div>
+                <div class="stat-box failed"><div class="stat-number" id="failedCount">0</div><div class="stat-label">Failed</div></div>
+                <div class="stat-box pending"><div class="stat-number" id="pendingCount">0</div><div class="stat-label">Pending</div></div>
+                <button class="btn-export" onclick="exportResults()">📥 Export</button>
+            </div>
+        </div>
+
+        <div class="section"><div class="section-header"><span class="section-icon">🔑</span><span class="section-title">1. Authentication</span></div>
+            <div class="test-item"><span class="test-name">Sign Up - New user registration</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Sign In - Email/Password login</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Sign In - Google OAuth</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Password Reset Flow</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+        </div>
+
+        <div class="section"><div class="section-header"><span class="section-icon">📄</span><span class="section-title">2. Document - Complete Flow</span></div>
+            <div class="test-item"><span class="test-name">Upload PDF Document</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Add Signature Fields</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Add Recipients (Signers)</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Send Document for Signing</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Email Received by Signer</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Sign Document (Draw Signature)</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Document Completed & Saved</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+        </div>
+
+        <div class="section"><div class="section-header"><span class="section-icon">✅</span><span class="section-title">3. Document Verifier</span></div>
+            <div class="test-item"><span class="test-name">Upload Signed Document to Verify</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Verification Result Displayed</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Audit Trail Shown</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+        </div>
+
+        <div class="section"><div class="section-header"><span class="section-icon">🧾</span><span class="section-title">4. Invoice</span></div>
+            <div class="test-item"><span class="test-name">Create New Invoice</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Add Line Items</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Send Invoice to Client</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Invoice PDF Download</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+        </div>
+
+        <div class="section"><div class="section-header"><span class="section-icon">🔄</span><span class="section-title">5. Recurring Invoice</span></div>
+            <div class="test-item"><span class="test-name">Create Recurring Invoice</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Set Frequency (Weekly/Monthly)</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Auto-Send Working</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+        </div>
+
+        <div class="section"><div class="section-header"><span class="section-icon">📧</span><span class="section-title">6. Custom SMTP</span></div>
+            <div class="test-item"><span class="test-name">Add SMTP Settings</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Test SMTP Connection</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Emails Send via Custom SMTP</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+        </div>
+
+        <div class="section"><div class="section-header"><span class="section-icon">🌐</span><span class="section-title">7. Custom Domain</span></div>
+            <div class="test-item"><span class="test-name">Add Custom Domain</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">DNS Verification</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">SSL Certificate Active</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Document Links Use Custom Domain</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+        </div>
+
+        <div class="section"><div class="section-header"><span class="section-icon">🌍</span><span class="section-title">8. Translations</span></div>
+            <div class="test-item"><span class="test-name">Dashboard fully translated (no mixed languages)</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+        </div>
+
+        <div class="section important"><div class="section-header"><span class="section-icon">💳</span><span class="section-title">9. Daily Purchase Test (IMPORTANT)</span></div>
+            <div class="test-item"><span class="test-name">Complete Purchase Flow (Buy Plan)</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Payment Processed Successfully</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">License Key Received</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">License Key Activates Account</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+        </div>
+
+        <div class="section important"><div class="section-header"><span class="section-icon">🤝</span><span class="section-title">10. Affiliate System (IMPORTANT)</span></div>
+            <div class="test-item"><span class="test-name">Affiliate Link Generated</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Affiliate Purchase Tracked</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Order Count Incremented in Affiliate Dashboard</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+            <div class="test-item"><span class="test-name">Commission Calculated Correctly</span><div class="status-buttons"><button class="status-btn pass" onclick="setStatus(this, 'pass')">✓ Pass</button><button class="status-btn fail" onclick="setStatus(this, 'fail')">✗ Fail</button></div><input type="text" class="notes-input" placeholder="Notes..."></div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('testDate').valueAsDate = new Date();
+        function setStatus(btn, status) { const buttons = btn.parentElement.querySelectorAll('.status-btn'); buttons.forEach(b => b.classList.remove('active')); btn.classList.add('active'); updateSummary(); }
+        function updateSummary() { const allItems = document.querySelectorAll('.test-item'); let passed = 0, failed = 0, pending = 0; allItems.forEach(item => { const passBtn = item.querySelector('.pass'); const failBtn = item.querySelector('.fail'); if (passBtn && passBtn.classList.contains('active')) { passed++; } else if (failBtn && failBtn.classList.contains('active')) { failed++; } else { pending++; } }); const total = passed + failed + pending; document.getElementById('totalCount').textContent = total; document.getElementById('passedCount').textContent = passed; document.getElementById('failedCount').textContent = failed; document.getElementById('pendingCount').textContent = pending; }
+        function exportResults() { const date = document.getElementById('testDate').value; const tester = document.getElementById('testerName').value || 'Unknown'; const items = document.querySelectorAll('.test-item'); let results = `MamaSign QA Report - ${date}\nTester: ${tester}\n\n`; items.forEach(item => { const name = item.querySelector('.test-name').textContent; const notes = item.querySelector('.notes-input').value; const passBtn = item.querySelector('.pass'); const failBtn = item.querySelector('.fail'); let status = '⏳ PENDING'; if (passBtn && passBtn.classList.contains('active')) status = '✅ PASSED'; if (failBtn && failBtn.classList.contains('active')) status = '❌ FAILED'; results += `${status} | ${name}`; if (notes) results += ` | Notes: ${notes}`; results += '\n'; }); results += `\n--- Summary ---\n`; results += `Total: ${document.getElementById('totalCount').textContent}\n`; results += `Passed: ${document.getElementById('passedCount').textContent}\n`; results += `Failed: ${document.getElementById('failedCount').textContent}\n`; results += `Pending: ${document.getElementById('pendingCount').textContent}\n`; const blob = new Blob([results], { type: 'text/plain' }); const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `mamasign-qa-${date}.txt`; a.click(); }
+        updateSummary();
+    </script>
+</body>
+</html>
