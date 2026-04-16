@@ -145,11 +145,15 @@
             <div class="video-link-container"><span class="video-icon">🎥</span><input type="text" class="video-link-input" placeholder="Full feature video URL (Loom)..." data-section="10. Affiliate System"></div>
         </div>
 
-        <div class="section" style="background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(123,44,191,0.1)); border: 2px solid rgba(0,212,255,0.3);">
-            <div class="section-header"><span class="section-icon">🎬</span><span class="section-title">Complete Test Video</span></div>
-            <div class="video-link-container" style="background: rgba(0,212,255,0.15); border: 1px dashed rgba(0,212,255,0.4);"><span class="video-icon">🎥</span><input type="text" class="video-link-input" id="fullVideoUrl" placeholder="Full QA session video URL (Loom)..." data-section="Complete Test"></div>
         </div>
-    </div>
+
+    <footer style="max-width: 900px; margin: 30px auto; padding: 25px; background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(123,44,191,0.15)); border-radius: 15px; border: 2px solid rgba(0,212,255,0.4); text-align: center;">
+        <div style="font-size: 1.3rem; font-weight: 600; margin-bottom: 15px; color: #fff;">🎬 Full Feature Complete Video</div>
+        <div style="display: flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); padding: 12px 20px; border-radius: 10px; border: 1px dashed rgba(255,255,255,0.3);">
+            <span style="font-size: 1.5rem;">🎥</span>
+            <input type="text" id="fullVideoUrl" placeholder="Add full QA session video URL here..." style="flex: 1; padding: 10px 15px; border: 1px solid rgba(255,255,255,0.2); border-radius: 8px; background: rgba(255,255,255,0.1); color: #fff; font-size: 1rem;" data-section="Complete Test">
+        </div>
+    </footer>
 
     <script>
         document.getElementById('testDate').valueAsDate = new Date();
