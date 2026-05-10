@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MamaSign Reseller System - BuyWhiteLabel Style Plan</title>
+  <style>
+    :root {
+      --bg: #f6fbfa;
+      --ink: #10201f;
+      --muted: #5f7370;
+      --teal: #0f766e;
+      --teal-dark: #0b4f49;
+      --line: #dcebea;
+      --soft: #eaf7f5;
+      --card: #ffffff;
+      --warn: #fff7df;
+      --code: #10201f;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+      line-height: 1.65;
+    }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 34px 18px 70px; }
+    .hero {
+      background: linear-gradient(135deg, var(--teal-dark), var(--teal));
+      color: white;
+      border-radius: 18px;
+      padding: 34px;
+      margin-bottom: 24px;
+      box-shadow: 0 20px 45px rgba(15, 118, 110, .16);
+    }
+    .kicker {
+      display: inline-flex;
+      padding: 7px 12px;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      background: rgba(255,255,255,.08);
+    }
+    h1 { font-size: 40px; line-height: 1.08; margin: 0 0 12px; letter-spacing: -1px; }
+    .hero p { max-width: 820px; margin: 0; color: #dffaf7; font-size: 17px; }
+    .meta { color: var(--muted); font-size: 14px; margin: 12px 0 26px; }
+    h2 {
+      margin: 36px 0 14px;
+      font-size: 25px;
+      line-height: 1.2;
+      letter-spacing: -.3px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 10px;
+    }
+    h3 { margin: 24px 0 8px; font-size: 18px; }
+    p { margin: 0 0 12px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 20px;
+      margin: 14px 0;
+      box-shadow: 0 10px 26px rgba(16, 32, 31, .045);
+    }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    ul, ol { margin: 8px 0 14px 22px; padding: 0; }
+    li { margin: 6px 0; }
+    code, pre {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    pre {
+      background: var(--code);
+      color: #d8fff9;
+      padding: 16px;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: var(--soft);
+      color: var(--teal-dark);
+      font-weight: 700;
+      font-size: 12px;
+      margin: 2px 4px 2px 0;
+    }
+    .note {
+      background: var(--warn);
+      border: 1px solid #efd892;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 14px 0;
+    }
+    table { width: 100%; border-collapse: collapse; margin: 12px 0 20px; background: white; border-radius: 12px; overflow: hidden; }
+    th, td { border: 1px solid var(--line); padding: 10px 12px; text-align: left; vertical-align: top; }
+    th { background: var(--soft); color: var(--teal-dark); }
+    .small { font-size: 14px; color: var(--muted); }
+    .flow {
+      counter-reset: step;
+      display: grid;
+      gap: 10px;
+      margin: 12px 0;
+    }
+    .step {
+      background: white;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 14px 14px 48px;
+      position: relative;
+    }
+    .step:before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 12px;
+    }
+    @media (max-width: 760px) {
+      .grid, .three { grid-template-columns: 1fr; }
+      h1 { font-size: 30px; }
+      .hero { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="kicker">MamaSign Reseller Blueprint</div>
+      <h1>BuyWhiteLabel jaisa reseller system MamaSign ke liye kaise banega</h1>
+      <p>Ye report sirf reseller side ke workflow, backend logic, database, APIs, security aur implementation phases par focus karti hai. Super Admin already ban chuka hai, isliye ab target hai reseller dashboard ko BuyWhiteLabel style banana.</p>
+    </section>
+
+    <div class="meta">Prepared for MamaSign - focus: reseller system, white-label flow, SaaS functionality. Date: May 10, 2026.</div>
+
+    <h2>1. Core Idea Simple Words Me</h2>
+    <div class="card">
+      <p>BuyWhiteLabel me reseller apna SaaS brand create karta hai. Wo domain connect karta hai, logo/colors lagata hai, SMTP set karta hai, plans banata hai, clients onboard karta hai, aur un clients ko apne brand ke under SaaS use karwata hai.</p>
+      <p>MamaSign me same logic hoga:</p>
+      <ul>
+        <li>Super Admin reseller create karega.</li>
+        <li>Reseller apna branded MamaSign portal setup karega.</li>
+        <li>Reseller clients ko invite karega ya public signup link dega.</li>
+        <li>Clients documents send/sign/manage karenge.</li>
+        <li>Reseller apni pricing/plans control karega.</li>
+        <li>Super Admin ko har reseller ka usage, clients aur revenue dikhna chahiye.</li>
+      </ul>
+    </div>
+
+    <h2>2. Main User Roles</h2>
+    <table>
+      <tr><th>Role</th><th>Kaam</th><th>Example</th></tr>
+      <tr><td>Super Admin</td><td>Resellers create/suspend, revenue dekhna, platform control</td><td>MamaSign owner</td></tr>
+      <tr><td>Reseller Admin</td><td>Apna white-label portal manage kare</td><td>YakeSign owner</td></tr>
+      <tr><td>Client Company Admin</td><td>Apni company ke documents/users manage kare</td><td>ABC Legal admin</td></tr>
+      <tr><td>Client User</td><td>Documents send/sign kare</td><td>ABC Legal employee</td></tr>
+      <tr><td>Signer</td><td>Public signing link par document sign kare</td><td>Customer/recipient</td></tr>
+    </table>
+
+    <h2>3. Reseller Onboarding Flow</h2>
+    <div class="flow">
+      <div class="step"><strong>Super Admin reseller create karta hai.</strong><br>Example: reseller name: YakeSign, admin email: owner@yakesign.com.</div>
+      <div class="step"><strong>System reseller tenant banata hai.</strong><br>Tenant means isolated brand/workspace jahan YakeSign ka data rahega.</div>
+      <div class="step"><strong>Reseller ko login email jati hai.</strong><br>Email me login link, temporary password ya magic invite token hota hai.</div>
+      <div class="step"><strong>Reseller first setup wizard complete karta hai.</strong><br>Brand, domain, SMTP, plans, first client.</div>
+      <div class="step"><strong>Reseller client invite karta hai.</strong><br>Example: client ABC Legal ko invite.</div>
+      <div class="step"><strong>Client branded portal use karta hai.</strong><br>Example: app.yakesign.com par MamaSign white-label version.</div>
+    </div>
+
+    <h2>4. Reseller Dashboard Modules</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>1. Dashboard / Overview</h3>
+        <p>Reseller ko summary mile:</p>
+        <ul>
+          <li>Total clients</li>
+          <li>Active paid clients</li>
+          <li>Trial clients</li>
+          <li>Monthly revenue</li>
+          <li>Documents sent</li>
+          <li>Pending signatures</li>
+          <li>API usage</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>2. Branding</h3>
+        <p>Reseller apna platform identity set kare:</p>
+        <ul>
+          <li>Platform name</li>
+          <li>Logo</li>
+          <li>Favicon</li>
+          <li>Primary color</li>
+          <li>Support email</li>
+          <li>Email footer text</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>3. Custom Domain</h3>
+        <p>Reseller domain add kare:</p>
+        <pre>app.yakesign.com CNAME cname.mamasign.com</pre>
+        <p>System DNS verify kare, SSL issue kare, aur domain active kare.</p>
+      </div>
+      <div class="card">
+        <h3>4. SMTP Settings</h3>
+        <p>Reseller apni email se invites/signature requests bhej sake:</p>
+        <ul>
+          <li>SMTP host</li>
+          <li>Port</li>
+          <li>Username</li>
+          <li>Password encrypted</li>
+          <li>From name/email</li>
+          <li>Test email</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>5. Plans</h3>
+        <p>Reseller apne client plans banata hai:</p>
+        <ul>
+          <li>Starter - $19/month</li>
+          <li>Pro - $49/month</li>
+          <li>Agency - $99/month</li>
+        </ul>
+        <p>Har plan ke andar documents, templates, users, API requests ki limits hoti hain.</p>
+      </div>
+      <div class="card">
+        <h3>6. Clients</h3>
+        <p>Reseller apne clients manage kare:</p>
+        <ul>
+          <li>Invite client</li>
+          <li>Assign plan</li>
+          <li>Suspend client</li>
+          <li>View usage</li>
+          <li>View payments</li>
+          <li>Delete client</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>5. Example: YakeSign Reseller</h2>
+    <div class="card">
+      <p>Suppose ek reseller ka naam <strong>YakeSign</strong> hai.</p>
+      <pre>Reseller: YakeSign
+Domain: app.yakesign.com
+Support email: support@yakesign.com
+SMTP: smtp.yakesign.com
+Plans:
+  Starter: $19/month, 50 documents/month
+  Pro: $49/month, 300 documents/month
+  Agency: $99/month, 1000 documents/month + API
+Clients:
+  ABC Legal
+  Smith Real Estate
+  HR Docs Agency</pre>
+      <p>ABC Legal jab login karega to usko MamaSign ka naam nahi dikhna chahiye. Usko YakeSign ka logo/domain/email dikhna chahiye. Backend me data MamaSign ke platform me hi rahega, lekin tenant isolation ke sath.</p>
+    </div>
+
+    <h2>6. White-Label Branding Logic</h2>
+    <div class="card">
+      <p>Har request par system hostname read karega aur tenant resolve karega.</p>
+      <pre>Request Host: app.yakesign.com
+Find domain in tenant_domains
+tenant_id = yake_sign_tenant
+Load branding from tenant_branding
+Load SMTP from tenant_smtp
+Load plans/features from tenant plans
+Render app with YakeSign branding</pre>
+      <p>Iska matlab same MamaSign codebase multiple brands serve karega.</p>
+    </div>
+
+    <h2>7. Client Signup Logic</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Invite Signup</h3>
+        <p>Reseller manually client email add karta hai. Client ko invite email jati hai.</p>
+        <pre>POST /api/reseller/clients/invite
+{
+  "companyName": "ABC Legal",
+  "adminEmail": "admin@abclegal.com",
+  "planId": "pro"
+}</pre>
+      </div>
+      <div class="card">
+        <h3>Public Signup</h3>
+        <p>Reseller public signup link enable karta hai.</p>
+        <pre>https://app.yakesign.com/sign-up
+Default plan: Trial
+Trial days: 7
+After trial: ask to upgrade</pre>
+      </div>
+    </div>
+
+    <h2>8. Plans and Feature Access</h2>
+    <table>
+      <tr><th>Feature</th><th>Starter</th><th>Pro</th><th>Agency</th></tr>
+      <tr><td>Documents/month</td><td>50</td><td>300</td><td>1000</td></tr>
+      <tr><td>Templates</td><td>5</td><td>50</td><td>Unlimited</td></tr>
+      <tr><td>Team users</td><td>1</td><td>5</td><td>25</td></tr>
+      <tr><td>Payments</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+      <tr><td>API access</td><td>No</td><td>No</td><td>Yes</td></tr>
+      <tr><td>Custom SMTP</td><td>No</td><td>Yes</td><td>Yes</td></tr>
+    </table>
+    <div class="card">
+      <p>Backend me har action se pehle feature check chalega:</p>
+      <pre>canUseFeature(client_id, "api_access")
+canUseLimit(client_id, "documents_per_month")
+canUseFeature(client_id, "payments")</pre>
+      <p>Agar limit cross ho gai to user ko upgrade screen dikhni chahiye.</p>
+    </div>
+
+    <h2>9. Billing Options</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Option A - Central MamaSign Billing</h3>
+        <p>Client payments MamaSign Stripe me aati hain. Super Admin reseller revenue/commission calculate karta hai.</p>
+        <p><strong>Best for first version</strong> kyun ke easy hai.</p>
+      </div>
+      <div class="card">
+        <h3>Option B - Reseller Own Stripe</h3>
+        <p>Reseller apna Stripe connect karta hai. Client payment direct reseller ke Stripe me jati hai.</p>
+        <p><strong>Best for full white-label</strong> lekin complex hai.</p>
+      </div>
+    </div>
+    <div class="note">
+      Recommendation: Phase 1 me central MamaSign billing rakho. Phase 2 me Stripe Connect ya reseller-owned Stripe add karo.
+    </div>
+
+    <h2>10. Required Database Tables</h2>
+    <pre>resellers
+  id, owner_user_id, name, status, created_at
+
+tenants
+  id, reseller_id, name, slug, status, default_domain, created_at
+
+tenant_domains
+  id, tenant_id, hostname, status, cname_target, verified_at, ssl_status
+
+tenant_branding
+  id, tenant_id, platform_name, logo_url, favicon_url, primary_color, support_email
+
+tenant_smtp
+  id, tenant_id, from_name, from_email, host, port, username, encrypted_password, secure
+
+client_companies
+  id, tenant_id, name, admin_email, plan_id, status, trial_ends_at
+
+client_users
+  id, tenant_id, client_company_id, user_id, role
+
+plans
+  id, tenant_id, name, price_cents, interval, active
+
+plan_features
+  id, plan_id, feature_key, enabled, limit_value
+
+subscriptions
+  id, tenant_id, client_company_id, plan_id, stripe_customer_id, stripe_subscription_id, status
+
+usage_tracking
+  id, tenant_id, client_company_id, metric, quantity, period_start, period_end
+
+api_keys
+  id, tenant_id, client_company_id, name, hashed_key, scopes, last_used_at
+
+audit_logs
+  id, tenant_id, actor_user_id, action, entity_type, entity_id, metadata_json, created_at</pre>
+
+    <h2>11. Required API Routes</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Reseller Settings</h3>
+        <pre>GET    /api/reseller/me
+GET    /api/reseller/overview
+PATCH  /api/reseller/branding
+PATCH  /api/reseller/smtp
+POST   /api/reseller/smtp/test</pre>
+      </div>
+      <div class="card">
+        <h3>Domains</h3>
+        <pre>GET    /api/reseller/domains
+POST   /api/reseller/domains
+POST   /api/reseller/domains/:id/verify
+DELETE /api/reseller/domains/:id</pre>
+      </div>
+      <div class="card">
+        <h3>Clients</h3>
+        <pre>GET    /api/reseller/clients
+POST   /api/reseller/clients/invite
+PATCH  /api/reseller/clients/:id/plan
+PATCH  /api/reseller/clients/:id/status
+DELETE /api/reseller/clients/:id</pre>
+      </div>
+      <div class="card">
+        <h3>Plans</h3>
+        <pre>GET    /api/reseller/plans
+POST   /api/reseller/plans
+PATCH  /api/reseller/plans/:id
+DELETE /api/reseller/plans/:id</pre>
+      </div>
+    </div>
+
+    <h2>12. Automation and Background Jobs</h2>
+    <table>
+      <tr><th>Job</th><th>Kaam</th><th>When it runs</th></tr>
+      <tr><td>Domain Verify Job</td><td>CNAME/SSL check kare</td><td>Every few minutes or manual verify</td></tr>
+      <tr><td>Email Queue</td><td>Invites/signing emails send kare</td><td>Whenever email needed</td></tr>
+      <tr><td>Usage Reset Job</td><td>Monthly limits reset kare</td><td>Monthly</td></tr>
+      <tr><td>Analytics Rollup</td><td>Daily metrics calculate kare</td><td>Daily</td></tr>
+      <tr><td>Stripe Sync</td><td>Payment/subscription status sync kare</td><td>Webhook + scheduled check</td></tr>
+    </table>
+
+    <h2>13. Security Rules</h2>
+    <div class="card">
+      <ul>
+        <li>Har query me `tenant_id` required ho.</li>
+        <li>Client data `client_company_id` ke bina access na ho.</li>
+        <li>SMTP password encrypted store ho.</li>
+        <li>API keys hashed store hon, plain text nahi.</li>
+        <li>Reseller doosre reseller ka domain claim na kar sake.</li>
+        <li>Super Admin impersonation audit logs me save ho.</li>
+        <li>Domain verification ke bina custom domain active na ho.</li>
+        <li>Billing webhook signature verify ho.</li>
+        <li>Plan limits server-side enforce hon, sirf frontend par nahi.</li>
+      </ul>
+    </div>
+
+    <h2>14. Step-by-Step Build Plan</h2>
+    <div class="flow">
+      <div class="step"><strong>Phase 1 - Reseller Tenant Foundation</strong><br>Super Admin ke created reseller ko tenant se connect karo. Hostname based tenant resolver banao.</div>
+      <div class="step"><strong>Phase 2 - Reseller Login and Dashboard Shell</strong><br>Reseller ke liye dashboard routes: overview, branding, domains, SMTP, plans, clients.</div>
+      <div class="step"><strong>Phase 3 - Branding System</strong><br>Logo, favicon, platform name, support email save/load. Dashboard aur signing emails me apply.</div>
+      <div class="step"><strong>Phase 4 - Custom Domain</strong><br>Domain add, DNS instructions, CNAME verify, status active/pending/failed.</div>
+      <div class="step"><strong>Phase 5 - SMTP</strong><br>SMTP credentials encrypted save, test email, tenant email sending fallback.</div>
+      <div class="step"><strong>Phase 6 - Plans and Limits</strong><br>Reseller plans create kare, features/limits set kare, client assign kare.</div>
+      <div class="step"><strong>Phase 7 - Client Management</strong><br>Invite client, public signup, suspend, delete, plan change, usage view.</div>
+      <div class="step"><strong>Phase 8 - Billing</strong><br>Stripe checkout/webhooks, subscription status, invoice logs, revenue dashboard.</div>
+      <div class="step"><strong>Phase 9 - API/Automation</strong><br>Client API keys, usage limits, webhooks, Pabbly/Zapier/n8n compatibility.</div>
+      <div class="step"><strong>Phase 10 - Analytics</strong><br>Reseller dashboard metrics: MRR, clients, conversion, document usage, API usage.</div>
+    </div>
+
+    <h2>15. What We Should Build First</h2>
+    <div class="note">
+      Since Super Admin already exists, first practical step should be: <strong>Reseller Tenant Foundation + Reseller Dashboard Shell + Branding Save/Load</strong>. Without this foundation, domain, SMTP, plans, clients sab unstable honge.
+    </div>
+    <div class="card">
+      <h3>First Sprint Scope</h3>
+      <ul>
+        <li>Reseller login route</li>
+        <li>Reseller dashboard layout</li>
+        <li>Tenant resolver</li>
+        <li>Branding settings page</li>
+        <li>Save logo/name/color/support email</li>
+        <li>Load branding on reseller/client portal</li>
+        <li>Basic clients page with empty state</li>
+        <li>Basic plans page with empty state</li>
+      </ul>
+    </div>
+
+    <h2>16. Final Recommendation</h2>
+    <div class="card">
+      <p>BuyWhiteLabel ka exact functional pattern MamaSign ke liye ye hai: reseller apna branded SaaS control kare, clients onboard kare, plans banaye, domain/SMTP connect kare, aur MamaSign features ko apne naam se sell kare.</p>
+      <p>Implementation me sab se important cheez tenant isolation hai. Agar tenant isolation weak hui to ek reseller ka document/client/payment doosre reseller ko leak ho sakta hai. Isliye pehle backend tenant model solid banao, phir features add karo.</p>
+      <p><strong>Best first build:</strong> reseller dashboard + branding + tenant resolver. Uske baad domain, SMTP, clients, plans, billing, API.</p>
+    </div>
+
+    <p class="small">End of report.</p>
+  </main>
+</body>
+</html>
