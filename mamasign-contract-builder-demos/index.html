@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MamaSign Contract Builder Demos</title>
+  <style>
+    body{margin:0;background:#f3f6fb;color:#111827;font-family:Inter,Arial,sans-serif;padding:32px}
+    main{max-width:1120px;margin:0 auto}
+    h1{margin:0 0 10px;font-size:30px;line-height:1.15}
+    p{margin:0 0 22px;color:#475569;line-height:1.55}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    a.card{display:block;background:white;border:1px solid #dbe4ef;border-radius:12px;text-decoration:none;color:#111827;overflow:hidden;box-shadow:0 18px 45px rgba(15,23,42,.08)}
+    img{display:block;width:100%;height:auto}
+    .body{padding:16px}
+    h2{margin:0 0 8px;font-size:20px}
+    .btn{display:inline-flex;margin-top:12px;border:1px solid #cbd5e1;border-radius:8px;padding:9px 12px;color:#155eef;font-weight:800}
+    @media(max-width:760px){body{padding:16px}.grid{grid-template-columns:1fr}h1{font-size:24px}}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>MamaSign Contract Builder Demos</h1>
+    <p>Corrected videos showing how the contracts are built from scratch in the builder: drag fields from the sidebar, position them on the document, configure options, and preview the public URL.</p>
+    <div class="grid">
+      <a class="card" href="teilnahmevereinbarung.html">
+        <img src="teilnahmevereinbarung-builder.png" alt="Teilnahmevereinbarung builder demo preview">
+        <div class="body">
+          <h2>Build Teilnahmevereinbarung</h2>
+          <p>Heading, protected text, personal details, health questionnaire, checklist, consent, date and signature.</p>
+          <span class="btn">Open video</span>
+        </div>
+      </a>
+      <a class="card" href="vertraulichkeitsvereinbarung.html">
+        <img src="vertraulichkeitsvereinbarung-builder.png" alt="Vertraulichkeitsvereinbarung builder demo preview">
+        <div class="body">
+          <h2>Build Vertraulichkeitsvereinbarung</h2>
+          <p>Protected clauses, client fields, checklist, dropdown/radio style options, confirmations and signature.</p>
+          <span class="btn">Open video</span>
+        </div>
+      </a>
+    </div>
+  </main>
+</body>
+</html>
