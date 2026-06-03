@@ -1,0 +1,46 @@
+:root { color-scheme: light; --ink:#17202a; --muted:#5d6876; --line:#d9e1e8; --soft:#f5f8fb; --accent:#0f766e; --accent2:#1d4ed8; --warn:#b45309; --danger:#b91c1c; --ok:#047857; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color:var(--ink); background:#eef3f6; }
+  .page { width:min(1180px, calc(100% - 32px)); margin:28px auto; background:#fff; border:1px solid #dbe3ea; box-shadow:0 18px 50px rgba(24,39,55,.10); }
+  header { padding:36px 42px 26px; border-bottom:1px solid var(--line); background:linear-gradient(180deg,#ffffff 0%,#f8fbfc 100%); }
+  .top { display:flex; align-items:flex-start; justify-content:space-between; gap:22px; }
+  h1 { margin:0; font-size:30px; line-height:1.15; letter-spacing:0; }
+  .subtitle { margin:10px 0 0; color:var(--muted); font-size:15px; line-height:1.55; max-width:780px; }
+  .badge { display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border:1px solid #a7f3d0; background:#ecfdf5; color:#065f46; border-radius:999px; font-size:13px; font-weight:700; white-space:nowrap; }
+  .actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:22px; }
+  .button { text-decoration:none; color:#fff; background:var(--accent); padding:10px 14px; border-radius:8px; font-size:13px; font-weight:700; }
+  .button.secondary { background:#263241; }
+  main { padding:30px 42px 42px; }
+  .cards { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:14px; margin-bottom:24px; }
+  .card { border:1px solid var(--line); background:#fff; border-radius:8px; padding:16px; min-height:112px; }
+  .card .label { color:var(--muted); font-size:12px; text-transform:uppercase; letter-spacing:.06em; font-weight:800; }
+  .card .value { margin-top:10px; font-size:26px; line-height:1.1; font-weight:850; color:var(--ink); }
+  .card .hint { margin-top:8px; font-size:12px; color:var(--muted); line-height:1.35; }
+  .card.primary { border-color:#99f6e4; background:#f0fdfa; }
+  .card.payable { border-color:#bfdbfe; background:#eff6ff; }
+  section { margin-top:28px; }
+  h2 { font-size:18px; margin:0 0 12px; letter-spacing:0; }
+  .summary-note { border:1px solid #fde68a; background:#fffbeb; color:#78350f; padding:14px 16px; border-radius:8px; line-height:1.55; font-size:14px; margin:18px 0 0; }
+  .meta { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:10px; margin:18px 0 0; }
+  .meta div { border:1px solid var(--line); background:var(--soft); border-radius:8px; padding:11px 12px; font-size:13px; color:var(--muted); }
+  .meta strong { display:block; color:var(--ink); margin-top:4px; font-size:14px; }
+  .table-wrap { border:1px solid var(--line); border-radius:8px; overflow:auto; background:#fff; }
+  table { border-collapse:collapse; width:100%; font-size:13px; }
+  th { text-align:left; background:#f2f6f8; color:#475569; font-size:12px; text-transform:uppercase; letter-spacing:.04em; padding:10px 11px; border-bottom:1px solid var(--line); white-space:nowrap; }
+  td { padding:10px 11px; border-bottom:1px solid #edf1f4; vertical-align:top; white-space:nowrap; }
+  tbody tr:last-child td { border-bottom:0; }
+  tfoot td { background:#0f172a; color:#fff; font-weight:800; border-bottom:0; }
+  .num, .money { text-align:right; font-variant-numeric:tabular-nums; }
+  .strong { font-weight:800; }
+  .muted { color:var(--muted); }
+  .warn { color:var(--warn); font-weight:800; }
+  .note { color:var(--muted); white-space:normal; min-width:210px; }
+  .pill { display:inline-flex; padding:4px 8px; border-radius:999px; font-size:12px; font-weight:800; line-height:1; }
+  .pill.paid { background:#dcfce7; color:#166534; }
+  .pill.refund { background:#fee2e2; color:#991b1b; }
+  .pill.pending { background:#eef2ff; color:#3730a3; }
+  .refund-row td { background:#fff7ed; }
+  footer { border-top:1px solid var(--line); padding:18px 42px 28px; color:var(--muted); font-size:12px; line-height:1.5; }
+  @media (max-width: 900px) { .top { display:block; } .badge { margin-top:14px; } .cards, .meta { grid-template-columns:1fr 1fr; } header, main, footer { padding-left:22px; padding-right:22px; } }
+  @media (max-width: 620px) { .cards, .meta { grid-template-columns:1fr; } h1 { font-size:24px; } .page { width:100%; margin:0; border-left:0; border-right:0; } }
+  @media print { body { background:#fff; } .page { width:100%; margin:0; border:0; box-shadow:none; } .actions { display:none; } section { break-inside:avoid; } .table-wrap { overflow:visible; } table { font-size:10px; } th, td { padding:6px 7px; } .order-detail { break-before:page; } }
