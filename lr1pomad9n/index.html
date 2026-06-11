@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Video Preview</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #0b0b0b;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .wrap {
+      width: min(100%, 1100px);
+    }
+
+    video {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: calc(100vh - 32px);
+      background: #000;
+      border-radius: 8px;
+      outline: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <video controls playsinline preload="metadata" src="clip.mp4"></video>
+  </div>
+</body>
+</html>
